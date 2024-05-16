@@ -87,6 +87,16 @@ const Calculator = () => {
         setIsNewOperand(true);
     };
 
+    const handleToggleSignClick = () => {
+        if (display === '0') return;
+
+        if (display.startsWith('-')) {
+            updateDisplay(display.substring(1));
+        } else if (display.length < 9) {
+            updateDisplay('-' + display);
+        }
+    };
+
     return (
         <div className={styles.calculator}>
             <div className={styles.display}>{display}</div>
@@ -107,6 +117,7 @@ const Calculator = () => {
                 <button className={styles.button} onClick={() => handleNumberClick('0')}>0</button>
                 <button className={styles.button} onClick={handleDecimalClick}>.</button>
                 <button className={styles.button} onClick={() => handleOperatorClick('/')}>/</button>
+                <button className={styles.button} onClick={handleToggleSignClick}>+/-</button>
                 <button className={styles.button} onClick={handleEqualClick}>=</button>
             </div>
         </div>
