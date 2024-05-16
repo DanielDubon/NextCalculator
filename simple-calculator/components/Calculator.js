@@ -72,9 +72,9 @@ const Calculator = () => {
     };
 
     return (
-        <div className="calculator">
-            <div className="display">{display}</div>
-            <div className="buttons">
+        <div className={styles.calculator}>
+            <div className={styles.display}>{display}</div>
+            <div className={styles.buttons}>
                 <button className={styles.button} onClick={() => handleNumberClick('1')}>1</button>
                 <button className={styles.button} onClick={() => handleNumberClick('2')}>2</button>
                 <button className={styles.button} onClick={() => handleNumberClick('3')}>3</button>
