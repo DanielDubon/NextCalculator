@@ -9,13 +9,22 @@ const Calculator = () => {
     const [operand, setOperand] = useState(null);
     const [isNewOperand, setIsNewOperand] = useState(true);
 
+    const updateDisplay = (value) => {
+        // Asegurarse de que el valor de display no exceda los 9 caracteres
+        if (value.length > 9) {
+            setDisplay(value.substring(0, 9));
+        } else {
+            setDisplay(value);
+        }
+    };
+
     const handleNumberClick = (number) => {
         if (isNewOperand) {
-            setDisplay(number);
+            updateDisplay(number);
             setIsNewOperand(false);
         } else {
             if (display.length < 9) {
-                setDisplay((prevDisplay) => prevDisplay === '0' ? number : prevDisplay + number);
+                updateDisplay(display === '0' ? number : display + number);
             }
         }
     };
@@ -25,9 +34,9 @@ const Calculator = () => {
         if (operator && operand !== null) {
             const result = calculateResult();
             if (result === 'ERROR') {
-                setDisplay('ERROR');
+                updateDisplay('ERROR');
             } else {
-                setDisplay(result.toString());
+                updateDisplay(result.toString());
             }
         }
         setOperator(op);
@@ -36,7 +45,7 @@ const Calculator = () => {
 
     const handleDecimalClick = () => {
         if (!display.includes('.') && display.length < 9) {
-            setDisplay((prevDisplay) => prevDisplay + '.');
+            updateDisplay(display + '.');
             setIsNewOperand(false);
         }
     };
@@ -60,19 +69,19 @@ const Calculator = () => {
                 result = parseFloat(display);
         }
         if (result > 999999999 || result < 0) return 'ERROR';
-        return result;
+        return result.toString().substring(0, 9); // Asegurar que el resultado no exceda los 9 caracteres
     };
 
     const handleEqualClick = () => {
         const result = calculateResult();
-        setDisplay(result.toString());
+        updateDisplay(result.toString());
         setOperator(null);
         setOperand(null);
         setIsNewOperand(true);
     };
 
     const handleClearClick = () => {
-        setDisplay('0');
+        updateDisplay('0');
         setOperator(null);
         setOperand(null);
         setIsNewOperand(true);
