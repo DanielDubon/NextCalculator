@@ -54,3 +54,8 @@
     background-color: #d0e389;
     border: 2px solid #000000;
 }
+
+.button.active {
+    background-color: #9289e3;
+    border: 2px solid #000000;
+}
