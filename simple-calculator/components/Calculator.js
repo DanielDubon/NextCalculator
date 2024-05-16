@@ -34,6 +34,13 @@ const Calculator = () => {
         setOperand(parseFloat(display));
     };
 
+    const handleDecimalClick = () => {
+        if (!display.includes('.') && display.length < 9) {
+            setDisplay((prevDisplay) => prevDisplay + '.');
+            setIsNewOperand(false);
+        }
+    };
+
     const calculateResult = () => {
         let result;
         switch (operator) {
@@ -89,8 +96,9 @@ const Calculator = () => {
                 <button className={styles.button} onClick={() => handleOperatorClick('*')}>*</button>
                 <button className={styles.button} onClick={() => handleClearClick()}>C</button>
                 <button className={styles.button} onClick={() => handleNumberClick('0')}>0</button>
-                <button className={styles.button} onClick={handleEqualClick}>=</button>
+                <button className={styles.button} onClick={handleDecimalClick}>.</button>
                 <button className={styles.button} onClick={() => handleOperatorClick('/')}>/</button>
+                <button className={styles.button} onClick={handleEqualClick}>=</button>
             </div>
         </div>
     );
