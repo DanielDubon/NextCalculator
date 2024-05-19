@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import styles from '../styles/Home.module.css';
+import React from 'react';
 
 const Calculator = () => {
     const [display, setDisplay] = useState('0');
@@ -172,7 +173,7 @@ const Calculator = () => {
 
     return (
         <div className={styles.calculator}>
-            <div className={styles.display}>{display}</div>
+            <div data-testid="display" className={styles.display}>{display}</div>
             <div className={styles.buttons}>
                 <button className={styles.button} data-key="1" onClick={() => handleNumberClick('1')}>1</button>
                 <button className={styles.button} data-key="2" onClick={() => handleNumberClick('2')}>2</button>
